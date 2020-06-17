@@ -13,6 +13,7 @@ function App() {
     name: '',
     email: '',
     password:'',
+    terms: '',
   }
 
   const initialUsers = []

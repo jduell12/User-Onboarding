@@ -35,3 +35,7 @@ export const StyledButton = styled.button`
       cursor: not-allowed;
   }
 `;
+
+export const StyledErrorDiv = styled.div`
+  color: crimson;
+`;

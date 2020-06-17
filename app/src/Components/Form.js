@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyledForm, StyledInnerForm, StyledButton} from './StyledForm'
+import {StyledForm, StyledInnerForm, StyledButton, StyledErrorDiv} from './StyledForm'
 
 
 export default function Form(props){
@@ -9,6 +9,12 @@ export default function Form(props){
         <div>
             <StyledForm onSubmit={onSubmit}>
                 <h2>Creating a User</h2>
+                    <StyledErrorDiv>
+                    <p>{errors.name}</p>
+                    <p>{errors.email}</p>
+                    <p>{errors.password}</p>
+                    <p>{errors.terms}</p>
+                </StyledErrorDiv>
                 <StyledInnerForm>
                     <label htmlFor='nameInput'>
                         Name: &nbsp;
@@ -19,6 +25,10 @@ export default function Form(props){
                             onChange={onInputChange}
                             name='name'
                         />
+                    </label>
+
+                    <label>
+                        
                     </label>
                     <StyledButton disabled={disabled}>Submit</StyledButton>
                 </StyledInnerForm>

@@ -31548,7 +31548,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StyledButton = exports.StyledInnerForm = exports.StyledForm = void 0;
+exports.StyledErrorDiv = exports.StyledButton = exports.StyledInnerForm = exports.StyledForm = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -31590,6 +31590,10 @@ const StyledButton = _styledComponents.default.button`
   }
 `;
 exports.StyledButton = StyledButton;
+const StyledErrorDiv = _styledComponents.default.div`
+  color: crimson;
+`;
+exports.StyledErrorDiv = StyledErrorDiv;
 },{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"Components/Form.js":[function(require,module,exports) {
 "use strict";
 
@@ -31615,7 +31619,7 @@ function Form(props) {
   } = props;
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_StyledForm.StyledForm, {
     onSubmit: onSubmit
-  }, /*#__PURE__*/_react.default.createElement("h2", null, "Creating a User"), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledInnerForm, null, /*#__PURE__*/_react.default.createElement("label", {
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Creating a User"), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledErrorDiv, null, /*#__PURE__*/_react.default.createElement("p", null, errors.name), /*#__PURE__*/_react.default.createElement("p", null, errors.email), /*#__PURE__*/_react.default.createElement("p", null, errors.password), /*#__PURE__*/_react.default.createElement("p", null, errors.terms)), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledInnerForm, null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "nameInput"
   }, "Name: \xA0", /*#__PURE__*/_react.default.createElement("input", {
     id: "nameInput",
@@ -31623,7 +31627,7 @@ function Form(props) {
     value: values.name,
     onChange: onInputChange,
     name: "name"
-  })), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledButton, {
+  })), /*#__PURE__*/_react.default.createElement("label", null), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledButton, {
     disabled: disabled
   }, "Submit"))));
 }
@@ -31655,7 +31659,8 @@ function App() {
   const initialFormErrors = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    terms: ''
   };
   const initialUsers = [];
   const initialDisabled = true; //creating states for app

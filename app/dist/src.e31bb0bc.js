@@ -31627,7 +31627,29 @@ function Form(props) {
     value: values.name,
     onChange: onInputChange,
     name: "name"
-  })), /*#__PURE__*/_react.default.createElement("label", null), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledButton, {
+  })), /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "emailInput"
+  }, "Email: \xA0", /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    id: "emailInput",
+    name: "email",
+    value: values.email,
+    onChange: onInputChange
+  })), /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "passwordInput"
+  }, "Password: \xA0", /*#__PURE__*/_react.default.createElement("input", {
+    type: "password",
+    id: "passwordInput",
+    value: values.password,
+    onChange: onInputChange
+  })), /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "checkboxInput"
+  }, "Terms of Service \xA0", /*#__PURE__*/_react.default.createElement("input", {
+    type: "checkbox",
+    id: "checkboxInput",
+    value: values.terms,
+    onChange: onCheckboxChange
+  })), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledButton, {
     disabled: disabled
   }, "Submit"))));
 }
@@ -31733,7 +31755,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64661" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62301" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

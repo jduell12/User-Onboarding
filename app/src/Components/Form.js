@@ -27,7 +27,35 @@ export default function Form(props){
                         />
                     </label>
 
-                    <label>
+                    <label htmlFor='emailInput'>
+                        Email: &nbsp;
+                        <input
+                            type='text'
+                            id='emailInput'
+                            name='email'
+                            value={values.email}
+                            onChange={onInputChange}
+                        />
+                    </label>
+
+                    <label htmlFor='passwordInput'>
+                        Password: &nbsp;
+                        <input 
+                            type='password'
+                            id='passwordInput'
+                            value={values.password}
+                            onChange={onInputChange}
+                        />
+                    </label>
+                    
+                    <label htmlFor='checkboxInput'>
+                        Terms of Service &nbsp;
+                        <input 
+                            type='checkbox'
+                            id='checkboxInput'
+                            value={values.terms}
+                            onChange={onCheckboxChange}
+                        />
                         
                     </label>
                     <StyledButton disabled={disabled}>Submit</StyledButton>

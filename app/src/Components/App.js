@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import * as Yup from 'yup';
+import axios from 'axios';
 import Form from './Form';
 import formSchema from '../Validation/formSchema';
 
@@ -26,6 +27,19 @@ function App() {
   const [formValues, setFormValues] = useState(initialFormValues) //object
   const [errors, setErrors] = useState(initialFormErrors) //object
   const [disabled, setDisabled] = useState(initialDisabled) //boolean
+
+  const postNewUser = newUser => {
+    axios.post('https://reqres.in/api/users', newUser)
+      .then(res => {
+        setUsers([...users, res.data])
+      })
+      .catch(err => {
+        debugger
+      })
+      .finally(() => {
+        setFormValues(initialFormValues)
+      })
+  }
 
   const onInputChange = event => {
     const {name, value} = event.target;
@@ -80,6 +94,14 @@ function App() {
 
   const onSubmit = event => {
     event.preventDefault()
+
+    const newUser = {
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim()
+    }
+
+    postNewUser(newUser);
   }
 
   useEffect(() => {

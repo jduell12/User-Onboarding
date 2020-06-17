@@ -8,7 +8,7 @@ export default function Form(props){
     return (
         <div>
             <StyledForm onSubmit={onSubmit}>
-                <h2>Creating a User</h2>
+                <h2>Create a User</h2>
                     <StyledErrorDiv>
                     <p>{errors.name}</p>
                     <p>{errors.email}</p>

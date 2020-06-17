@@ -43762,7 +43762,7 @@ function Form(props) {
   } = props;
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_StyledForm.StyledForm, {
     onSubmit: onSubmit
-  }, /*#__PURE__*/_react.default.createElement("h2", null, "Creating a User"), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledErrorDiv, null, /*#__PURE__*/_react.default.createElement("p", null, errors.name), /*#__PURE__*/_react.default.createElement("p", null, errors.email), /*#__PURE__*/_react.default.createElement("p", null, errors.password), /*#__PURE__*/_react.default.createElement("p", null, errors.terms)), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledInnerForm, null, /*#__PURE__*/_react.default.createElement("label", {
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Create a User"), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledErrorDiv, null, /*#__PURE__*/_react.default.createElement("p", null, errors.name), /*#__PURE__*/_react.default.createElement("p", null, errors.email), /*#__PURE__*/_react.default.createElement("p", null, errors.password), /*#__PURE__*/_react.default.createElement("p", null, errors.terms)), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledInnerForm, null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "nameInput"
   }, "Name: \xA0", /*#__PURE__*/_react.default.createElement("input", {
     id: "nameInput",
@@ -43821,7 +43821,29 @@ const formSchema = Yup.object().shape({
 });
 var _default = formSchema;
 exports.default = _default;
-},{"yup":"../node_modules/yup/es/index.js"}],"Components/App.js":[function(require,module,exports) {
+},{"yup":"../node_modules/yup/es/index.js"}],"Components/User.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = User;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _StyledForm = require("./StyledForm");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function User(props) {
+  const {
+    name,
+    email,
+    password
+  } = props.info;
+  return /*#__PURE__*/_react.default.createElement(_StyledForm.StyledForm, null, /*#__PURE__*/_react.default.createElement("h2", null, "Name"), /*#__PURE__*/_react.default.createElement("p", null, name), /*#__PURE__*/_react.default.createElement("h3", null, "Email"), /*#__PURE__*/_react.default.createElement("p", null, email), /*#__PURE__*/_react.default.createElement("h3", null, "Password"), /*#__PURE__*/_react.default.createElement("p", null, password));
+}
+},{"react":"../node_modules/react/index.js","./StyledForm":"Components/StyledForm.js"}],"Components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43838,6 +43860,8 @@ var _axios = _interopRequireDefault(require("axios"));
 var _Form = _interopRequireDefault(require("./Form"));
 
 var _formSchema = _interopRequireDefault(require("../Validation/formSchema"));
+
+var _User = _interopRequireDefault(require("./User"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43872,6 +43896,7 @@ function App() {
   const postNewUser = newUser => {
     _axios.default.post('https://reqres.in/api/users', newUser).then(res => {
       setUsers([...users, res.data]);
+      console.log(users);
     }).catch(err => {
       debugger;
     }).finally(() => {
@@ -43939,12 +43964,17 @@ function App() {
     onSubmit: onSubmit,
     disabled: disabled,
     errors: errors
+  }), users.map(user => {
+    return /*#__PURE__*/_react.default.createElement(_User.default, {
+      key: user.id,
+      info: user
+    });
   }));
 }
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","yup":"../node_modules/yup/es/index.js","axios":"../node_modules/axios/index.js","./Form":"Components/Form.js","../Validation/formSchema":"Validation/formSchema.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","yup":"../node_modules/yup/es/index.js","axios":"../node_modules/axios/index.js","./Form":"Components/Form.js","../Validation/formSchema":"Validation/formSchema.js","./User":"Components/User.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

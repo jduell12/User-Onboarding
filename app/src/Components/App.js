@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import Form from './Form';
 import formSchema from '../Validation/formSchema';
+import User from './User'
 
 function App() {
   const initialFormValues = {
@@ -32,6 +33,7 @@ function App() {
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
         setUsers([...users, res.data])
+        console.log(users);
       })
       .catch(err => {
         debugger
@@ -121,6 +123,13 @@ function App() {
         disabled={disabled}
         errors={errors}
       />
+      {
+        users.map(user => {
+          return (
+            <User key={user.id} info={user}/>
+          )
+        })
+      }
     </div>
   );
 }

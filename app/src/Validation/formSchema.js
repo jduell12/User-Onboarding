@@ -15,6 +15,7 @@ const formSchema = Yup.object().shape({
         .required("Must include a valid password"),
     terms: Yup
         .boolean()
+        .oneOf([true], "Must accept the Terms of Service")
 })
 
 export default formSchema

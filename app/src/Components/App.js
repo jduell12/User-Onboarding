@@ -26,11 +26,21 @@ function App() {
   const [disabled, setDisabled] = useState(initialDisabled) //boolean
 
   const onInputChange = event => {
+    const {name, value} = event.target;
 
+    setFormValues({
+      ...formValues,
+      [name]:value
+    })
   }
 
   const onCheckboxChange = event => {
+    const {name, checked} = event.target;
 
+    setFormValues({
+      ...formValues,
+      [name]:checked
+    })
   }
 
   const onSubmit = event => {

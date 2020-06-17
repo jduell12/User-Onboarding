@@ -31640,6 +31640,7 @@ function Form(props) {
   }, "Password: \xA0", /*#__PURE__*/_react.default.createElement("input", {
     type: "password",
     id: "passwordInput",
+    name: "password",
     value: values.password,
     onChange: onInputChange
   })), /*#__PURE__*/_react.default.createElement("label", {
@@ -31647,8 +31648,10 @@ function Form(props) {
   }, "Terms of Service \xA0", /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
     id: "checkboxInput",
+    name: "terms",
     value: values.terms,
-    onChange: onCheckboxChange
+    onChange: onCheckboxChange,
+    checked: values.terms
   })), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledButton, {
     disabled: disabled
   }, "Submit"))));
@@ -31695,9 +31698,25 @@ function App() {
 
   const [disabled, setDisabled] = (0, _react.useState)(initialDisabled); //boolean
 
-  const onInputChange = event => {};
+  const onInputChange = event => {
+    const {
+      name,
+      value
+    } = event.target;
+    setFormValues({ ...formValues,
+      [name]: value
+    });
+  };
 
-  const onCheckboxChange = event => {};
+  const onCheckboxChange = event => {
+    const {
+      name,
+      checked
+    } = event.target;
+    setFormValues({ ...formValues,
+      [name]: checked
+    });
+  };
 
   const onSubmit = event => {
     event.preventDefault();

@@ -43,6 +43,7 @@ export default function Form(props){
                         <input 
                             type='password'
                             id='passwordInput'
+                            name='password'
                             value={values.password}
                             onChange={onInputChange}
                         />
@@ -53,8 +54,10 @@ export default function Form(props){
                         <input 
                             type='checkbox'
                             id='checkboxInput'
+                            name='terms'
                             value={values.terms}
                             onChange={onCheckboxChange}
+                            checked={values.terms}
                         />
                         
                     </label>

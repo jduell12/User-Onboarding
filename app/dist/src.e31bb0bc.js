@@ -31548,7 +31548,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StyledForm = void 0;
+exports.StyledButton = exports.StyledInnerForm = exports.StyledForm = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -31563,6 +31563,33 @@ const StyledForm = _styledComponents.default.form`
     background-color:aliceblue
 `;
 exports.StyledForm = StyledForm;
+const StyledInnerForm = _styledComponents.default.div`
+    padding: 0 3% 0 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+exports.StyledInnerForm = StyledInnerForm;
+const StyledButton = _styledComponents.default.button`
+  height: 2rem;
+  width: 6rem;
+  border-radius: 8px;
+  color: rgb(30, 220, 20);
+  background-color: white;
+  border: 2px solid rgb(30, 220, 20);
+
+  &:hover{
+      cursor:pointer;
+  }
+
+  &:disabled{
+      color:crimson;
+      background-color: white;
+      border: 2px solid crimson;
+      cursor: not-allowed;
+  }
+`;
+exports.StyledButton = StyledButton;
 },{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"Components/Form.js":[function(require,module,exports) {
 "use strict";
 
@@ -31586,7 +31613,19 @@ function Form(props) {
     disabled,
     errors
   } = props;
-  return /*#__PURE__*/_react.default.createElement(_StyledForm.StyledForm, null);
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_StyledForm.StyledForm, {
+    onSubmit: onSubmit
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Creating a User"), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledInnerForm, null, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "nameInput"
+  }, "Name: \xA0", /*#__PURE__*/_react.default.createElement("input", {
+    id: "nameInput",
+    type: "text",
+    value: values.name,
+    onChange: onInputChange,
+    name: "name"
+  })), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledButton, {
+    disabled: disabled
+  }, "Submit"))));
 }
 },{"react":"../node_modules/react/index.js","./StyledForm":"Components/StyledForm.js"}],"Components/App.js":[function(require,module,exports) {
 "use strict";
@@ -31637,7 +31676,7 @@ function App() {
     event.preventDefault();
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Creating Users"), /*#__PURE__*/_react.default.createElement(_Form.default, {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Users"), /*#__PURE__*/_react.default.createElement(_Form.default, {
     values: formValues,
     onInputChange: onInputChange,
     onCheckboxChange: onCheckboxChange,

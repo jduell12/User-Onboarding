@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div>
-      <h1>Creating Users</h1>
+      <h1>Users</h1>
       <Form 
         values={formValues} 
         onInputChange={onInputChange} 

@@ -8,3 +8,30 @@ export const StyledForm = styled.form`
     padding: 5%;
     background-color:aliceblue
 `;
+
+export const StyledInnerForm = styled.div`
+    padding: 0 3% 0 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+export const StyledButton = styled.button`
+  height: 2rem;
+  width: 6rem;
+  border-radius: 8px;
+  color: rgb(30, 220, 20);
+  background-color: white;
+  border: 2px solid rgb(30, 220, 20);
+
+  &:hover{
+      cursor:pointer;
+  }
+
+  &:disabled{
+      color:crimson;
+      background-color: white;
+      border: 2px solid crimson;
+      cursor: not-allowed;
+  }
+`;

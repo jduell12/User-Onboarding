@@ -10,10 +10,11 @@ export default function Form(props){
             <StyledForm onSubmit={onSubmit}>
                 <h2>Create a User</h2>
                     <StyledErrorDiv>
-                    <p>{errors.name}</p>
-                    <p>{errors.email}</p>
-                    <p>{errors.password}</p>
-                    <p>{errors.terms}</p>
+                    <div>{errors.name}</div>
+                    <div>{errors.email}</div>
+                    <div>{errors.password}</div>
+                    <div>{errors.role}</div>
+                    <div>{errors.terms}</div>
                 </StyledErrorDiv>
                 <StyledInnerForm>
                     <label htmlFor='nameInput'>
@@ -47,6 +48,22 @@ export default function Form(props){
                             value={values.password}
                             onChange={onInputChange}
                         />
+                    </label>
+
+                    <label>
+                        Role &nbsp;
+                        <select
+                            onChange={onInputChange}
+                            value={values.role}
+                            name='role'
+                        >
+                            <option value=''>-- Select a Role --</option>
+                            <option value='Gamer'>Gamer</option>
+                            <option value='Student'>Student</option>
+                            <option value='Instructor'>Instructor</option>
+                            <option value='Hobbiest'>Hobbiest</option>
+                            <option value='Developer'>Developer</option>
+                        </select>
                     </label>
                     
                     <label htmlFor='checkboxInput'>

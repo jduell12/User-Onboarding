@@ -10,6 +10,7 @@ function App() {
     name: '',
     email: '',
     password:'',
+    role: '',
     terms: false,
   }
 
@@ -17,6 +18,7 @@ function App() {
     name: '',
     email: '',
     password:'',
+    role: '',
     terms: '',
   }
 
@@ -100,7 +102,8 @@ function App() {
     const newUser = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
-      password: formValues.password.trim()
+      password: formValues.password.trim(),
+      role: formValues.role
     }
 
     postNewUser(newUser);

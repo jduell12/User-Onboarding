@@ -39,3 +39,8 @@ export const StyledButton = styled.button`
 export const StyledErrorDiv = styled.div`
   color: crimson;
 `;
+
+export const StyledH2 = styled.h2`
+  display: inline;
+  margin: 3%;
+`;

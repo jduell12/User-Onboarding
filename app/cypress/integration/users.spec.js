@@ -18,5 +18,13 @@ describe('Navigates to the page and the form loads with submit button disabled',
         cy.get('[for=checkboxInput]').contains('Terms of Service')
     })
 
-
+    it('Input areas are empty and Submit button is disabled', () => {
+        cy.get('#nameInput').should('be.empty')
+        cy.get('#emailInput').should('be.empty')
+        cy.get('#passwordInput').should('be.empty')
+        cy.get('#dateInput').should('be.empty')
+        cy.get('#urlInput').should('be.empty')
+        cy.get('#checkboxInput').should('not.be.checked')
+        cy.contains('Submit').should('be.disabled')
+    })
 })

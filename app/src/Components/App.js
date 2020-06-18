@@ -11,7 +11,7 @@ function App() {
     email: '',
     password:'',
     role: '',
-    color: '',
+    color: '#000000',
     url: '',
     bday: '',
     terms: false,

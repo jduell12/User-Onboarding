@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 describe('Navigates to the page and the form loads with submit button disabled', () => {
+
     it('navigates to the site', () => {
         cy.visit('http://localhost:1234')
         cy.url().should('include', 'localhost')
@@ -92,4 +93,31 @@ describe('Can input data into the form', () => {
 
         cy.contains('Submit').should('enabled')
     })
+})
+
+describe('enters in data to the form and submits the data', () => {
+    it('navigates to the site', () => {
+        cy.visit('http://localhost:1234')
+    })
+
+    it('can enter data into the form fields', () => {
+        cy.get('#nameInput').type('Ann').should('have.value', 'Ann')
+        cy.get('#emailInput').type('ann@ann.com')
+        cy.get('#passwordInput').type('password')
+        cy.get('#dateInput').type('1990-06-20')
+        cy.get('select').select('Developer')
+        cy.get('#urlInput').type('http://something.com')
+        cy.get('input[type=color]').invoke('val', '#D783FF').trigger('change')
+        cy.get('#checkboxInput').check()
+    })
+
+    it('can submit the form', () => {
+        cy.contains('Submit').click()
+    })
+
+    it('the new user is added to the page and submit button is disabled', () => {
+        cy.contains('Ann')
+        cy.contains('Submit').should('be.disabled')
+    })
+
 })

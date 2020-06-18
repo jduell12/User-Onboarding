@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+
 describe('Navigates to the page and the form loads with submit button disabled', () => {
 
     it('navigates to the site', () => {
@@ -28,6 +29,33 @@ describe('Navigates to the page and the form loads with submit button disabled',
         cy.get('#checkboxInput').should('not.be.checked')
         cy.contains('Submit').should('be.disabled')
     })
+})
+
+describe('checks that error messages are being printed to the page when the user does not input all required data ', () => {
+    it('navigates to the page', () => {
+        cy.visit('http://localhost:1234')
+    })
+
+    it('enters in a name that is 1 character and displays error message to page', () => {
+        cy.get('#nameInput').type('a')
+        cy.contains('2 characters')
+    })
+
+    it('enters an invalid email and displays an error message to page', () => {
+        cy.get('#emailInput').type('something')
+        cy.contains('valid address')
+    })
+
+    it('enters a password less than 6 characters and displays an error message to the page', () => {
+        cy.get('#passwordInput').type('aaa')
+        cy.contains('6 characters')
+    })
+
+    it('unchecks terms of Service and displays an error message to the page', () => {
+        cy.get('#checkboxInput').click().click()
+        cy.contains('accept the Terms of Service')
+    })
+
 })
 
 describe('Can input data into the form', () => {
@@ -120,4 +148,10 @@ describe('enters in data to the form and submits the data', () => {
         cy.contains('Submit').should('be.disabled')
     })
 
+    //clears the user we put in
+    it('reloads the page', () => {
+        cy.visit('http://localhost:1234')
+    })
+
 })
+

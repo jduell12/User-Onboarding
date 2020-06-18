@@ -6,7 +6,7 @@ export const StyledForm = styled.form`
     box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
     margin: 5%;
     padding: 5%;
-    background-color:aliceblue
+    background-color:aliceblue;
 `;
 
 export const StyledInnerForm = styled.div`
@@ -43,4 +43,14 @@ export const StyledErrorDiv = styled.div`
 export const StyledH2 = styled.h2`
   display: inline;
   margin: 3%;
+`;
+
+export const StyledUser = styled.div`
+    border: 1px solid rgb(210, 210, 210);
+    border-radius: 6px;
+    box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
+    margin: 5%;
+    padding: 5%;
+    background-color:aliceblue;
+    text-align: initial;
 `;

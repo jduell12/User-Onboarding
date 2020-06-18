@@ -3,18 +3,20 @@ import {StyledForm, StyledInnerForm, StyledButton, StyledErrorDiv} from './Style
 
 
 export default function Form(props){
-    const {values, onInputChange, onCheckboxChange, onSubmit, disabled, errors} = props
+    const {values, onInputChange, onCheckboxChange, onColorChange, onSubmit, disabled, errors} = props
 
     return (
         <div>
             <StyledForm onSubmit={onSubmit}>
                 <h2>Create a User</h2>
-                    <StyledErrorDiv>
+                <StyledErrorDiv>
                     <div>{errors.name}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
                     <div>{errors.role}</div>
                     <div>{errors.terms}</div>
+                    <div>{errors.url}</div>
+                    <div>{errors.bday}</div>
                 </StyledErrorDiv>
                 <StyledInnerForm>
                     <label htmlFor='nameInput'>
@@ -50,6 +52,17 @@ export default function Form(props){
                         />
                     </label>
 
+                    <label htmlFor='dateInput'>
+                        Birthday: &nbsp;
+                        <input 
+                            type='date'
+                            id='dateInput'
+                            name='bday'
+                            value={values.bday}
+                            onChange={onInputChange}
+                        />
+                    </label>
+
                     <label>
                         Role &nbsp;
                         <select
@@ -64,6 +77,28 @@ export default function Form(props){
                             <option value='Hobbiest'>Hobbiest</option>
                             <option value='Developer'>Developer</option>
                         </select>
+                    </label>
+
+                    <label htmlFor='urlInput'>
+                        Enter your personal url: &nbsp;
+                        <input 
+                            type='url'
+                            name='url' 
+                            id='urlInput'
+                            value={values.url}
+                            onChange={onInputChange}
+                        />
+                    </label>
+
+                    <label htmlFor='colorImput'>
+                        Choose a personal color: &nbsp;
+                        <input 
+                            type='color'
+                            id='colorInput'
+                            name='color'
+                            value={values.color}
+                            onChange={onColorChange}
+                        />
                     </label>
                     
                     <label htmlFor='checkboxInput'>

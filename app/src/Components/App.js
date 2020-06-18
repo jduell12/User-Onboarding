@@ -11,6 +11,9 @@ function App() {
     email: '',
     password:'',
     role: '',
+    color: '',
+    url: '',
+    bday: '',
     terms: false,
   }
 
@@ -19,6 +22,8 @@ function App() {
     email: '',
     password:'',
     role: '',
+    url: '',
+    bday: '',
     terms: '',
   }
 
@@ -34,8 +39,7 @@ function App() {
   const postNewUser = newUser => {
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
-        setUsers([...users, res.data])
-        console.log(users);
+        setUsers([res.data, ...users])
       })
       .catch(err => {
         debugger
@@ -47,7 +51,6 @@ function App() {
 
   const onInputChange = event => {
     const {name, value} = event.target;
-
     Yup
       .reach(formSchema, name)
       .validate(value)
@@ -63,7 +66,6 @@ function App() {
           [name]: err.errors[0]
         })
       })
-
     setFormValues({
       ...formValues,
       [name]:value
@@ -96,6 +98,14 @@ function App() {
     })
   }
 
+  const onColorChange = event => {
+    const {name, value} = event.target;
+    setFormValues({
+      ...formValues,
+      [name]:value
+    })
+  }
+
   const onSubmit = event => {
     event.preventDefault()
 
@@ -103,7 +113,10 @@ function App() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      role: formValues.role
+      role: formValues.role,
+      color: formValues.color,
+      url: formValues.url,
+      bday: formValues.bday
     }
 
     postNewUser(newUser);
@@ -122,6 +135,7 @@ function App() {
         values={formValues} 
         onInputChange={onInputChange} 
         onCheckboxChange={onCheckboxChange}
+        onColorChange={onColorChange}
         onSubmit={onSubmit}
         disabled={disabled}
         errors={errors}

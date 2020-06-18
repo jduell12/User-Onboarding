@@ -43691,7 +43691,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StyledH2 = exports.StyledErrorDiv = exports.StyledButton = exports.StyledInnerForm = exports.StyledForm = void 0;
+exports.StyledUser = exports.StyledH2 = exports.StyledErrorDiv = exports.StyledButton = exports.StyledInnerForm = exports.StyledForm = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
@@ -43703,7 +43703,7 @@ const StyledForm = _styledComponents.default.form`
     box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
     margin: 5%;
     padding: 5%;
-    background-color:aliceblue
+    background-color:aliceblue;
 `;
 exports.StyledForm = StyledForm;
 const StyledInnerForm = _styledComponents.default.div`
@@ -43742,6 +43742,16 @@ const StyledH2 = _styledComponents.default.h2`
   margin: 3%;
 `;
 exports.StyledH2 = StyledH2;
+const StyledUser = _styledComponents.default.div`
+    border: 1px solid rgb(210, 210, 210);
+    border-radius: 6px;
+    box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
+    margin: 5%;
+    padding: 5%;
+    background-color:aliceblue;
+    text-align: initial;
+`;
+exports.StyledUser = StyledUser;
 },{"styled-components":"../node_modules/styled-components/dist/styled-components.browser.esm.js"}],"Components/Form.js":[function(require,module,exports) {
 "use strict";
 
@@ -43761,13 +43771,14 @@ function Form(props) {
     values,
     onInputChange,
     onCheckboxChange,
+    onColorChange,
     onSubmit,
     disabled,
     errors
   } = props;
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_StyledForm.StyledForm, {
     onSubmit: onSubmit
-  }, /*#__PURE__*/_react.default.createElement("h2", null, "Create a User"), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledErrorDiv, null, /*#__PURE__*/_react.default.createElement("div", null, errors.name), /*#__PURE__*/_react.default.createElement("div", null, errors.email), /*#__PURE__*/_react.default.createElement("div", null, errors.password), /*#__PURE__*/_react.default.createElement("div", null, errors.role), /*#__PURE__*/_react.default.createElement("div", null, errors.terms)), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledInnerForm, null, /*#__PURE__*/_react.default.createElement("label", {
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Create a User"), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledErrorDiv, null, /*#__PURE__*/_react.default.createElement("div", null, errors.name), /*#__PURE__*/_react.default.createElement("div", null, errors.email), /*#__PURE__*/_react.default.createElement("div", null, errors.password), /*#__PURE__*/_react.default.createElement("div", null, errors.role), /*#__PURE__*/_react.default.createElement("div", null, errors.terms), /*#__PURE__*/_react.default.createElement("div", null, errors.url), /*#__PURE__*/_react.default.createElement("div", null, errors.bday)), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledInnerForm, null, /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "nameInput"
   }, "Name: \xA0", /*#__PURE__*/_react.default.createElement("input", {
     id: "nameInput",
@@ -43791,6 +43802,14 @@ function Form(props) {
     name: "password",
     value: values.password,
     onChange: onInputChange
+  })), /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "dateInput"
+  }, "Birthday: \xA0", /*#__PURE__*/_react.default.createElement("input", {
+    type: "date",
+    id: "dateInput",
+    name: "bday",
+    value: values.bday,
+    onChange: onInputChange
   })), /*#__PURE__*/_react.default.createElement("label", null, "Role \xA0", /*#__PURE__*/_react.default.createElement("select", {
     onChange: onInputChange,
     value: values.role,
@@ -43808,6 +43827,22 @@ function Form(props) {
   }, "Hobbiest"), /*#__PURE__*/_react.default.createElement("option", {
     value: "Developer"
   }, "Developer"))), /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "urlInput"
+  }, "Enter your personal url: \xA0", /*#__PURE__*/_react.default.createElement("input", {
+    type: "url",
+    name: "url",
+    id: "urlInput",
+    value: values.url,
+    onChange: onInputChange
+  })), /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "colorImput"
+  }, "Choose a personal color: \xA0", /*#__PURE__*/_react.default.createElement("input", {
+    type: "color",
+    id: "colorInput",
+    name: "color",
+    value: values.color,
+    onChange: onColorChange
+  })), /*#__PURE__*/_react.default.createElement("label", {
     htmlFor: "checkboxInput"
   }, "Terms of Service \xA0", /*#__PURE__*/_react.default.createElement("input", {
     type: "checkbox",
@@ -43839,6 +43874,8 @@ const formSchema = Yup.object().shape({
   email: Yup.string().email("Please enter a valid address").required("Must include a valid email"),
   password: Yup.string().min(6, "Password must have at least 6 characters").required("Must include a valid password"),
   role: Yup.string().oneOf(['Gamer', 'Student', 'Instructor', 'Hobbiest', 'Developer'], "Please choose a role for the user"),
+  url: Yup.string().url('Enter url in http format'),
+  bday: Yup.date().min(new Date(1970), 'Select a date after 1969').required('Please enter a birthday'),
   terms: Yup.boolean().oneOf([true], "Must accept the Terms of Service")
 });
 var _default = formSchema;
@@ -43862,9 +43899,16 @@ function User(props) {
     name,
     email,
     password,
-    role
+    role,
+    color,
+    url,
+    bday
   } = props.info;
-  return /*#__PURE__*/_react.default.createElement(_StyledForm.StyledForm, null, /*#__PURE__*/_react.default.createElement(_StyledForm.StyledH2, null, "Name:"), " ", /*#__PURE__*/_react.default.createElement("p", null, name), " ", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledH2, null, "Email:"), " ", /*#__PURE__*/_react.default.createElement("p", null, email), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledH2, null, "Password:"), " ", /*#__PURE__*/_react.default.createElement("p", null, password), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledH2, null, "Role:"), " ", /*#__PURE__*/_react.default.createElement("p", null, role), /*#__PURE__*/_react.default.createElement("br", null));
+  return /*#__PURE__*/_react.default.createElement(_StyledForm.StyledUser, {
+    style: {
+      color: color
+    }
+  }, /*#__PURE__*/_react.default.createElement(_StyledForm.StyledH2, null, "Name:"), " ", /*#__PURE__*/_react.default.createElement("p", null, name), " ", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledH2, null, "Email:"), " ", /*#__PURE__*/_react.default.createElement("p", null, email), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledH2, null, "Password:"), " ", /*#__PURE__*/_react.default.createElement("p", null, password), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledH2, null, "Role:"), " ", /*#__PURE__*/_react.default.createElement("p", null, role), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledH2, null, "Url:"), " ", /*#__PURE__*/_react.default.createElement("p", null, url), " ", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_StyledForm.StyledH2, null, "Birthday:"), /*#__PURE__*/_react.default.createElement("p", null, bday));
 }
 },{"react":"../node_modules/react/index.js","./StyledForm":"Components/StyledForm.js"}],"Components/App.js":[function(require,module,exports) {
 "use strict";
@@ -43898,6 +43942,9 @@ function App() {
     email: '',
     password: '',
     role: '',
+    color: '',
+    url: '',
+    bday: '',
     terms: false
   };
   const initialFormErrors = {
@@ -43905,6 +43952,8 @@ function App() {
     email: '',
     password: '',
     role: '',
+    url: '',
+    bday: '',
     terms: ''
   };
   const initialUsers = [];
@@ -43920,8 +43969,7 @@ function App() {
 
   const postNewUser = newUser => {
     _axios.default.post('https://reqres.in/api/users', newUser).then(res => {
-      setUsers([...users, res.data]);
-      console.log(users);
+      setUsers([res.data, ...users]);
     }).catch(err => {
       debugger;
     }).finally(() => {
@@ -43967,13 +44015,26 @@ function App() {
     });
   };
 
+  const onColorChange = event => {
+    const {
+      name,
+      value
+    } = event.target;
+    setFormValues({ ...formValues,
+      [name]: value
+    });
+  };
+
   const onSubmit = event => {
     event.preventDefault();
     const newUser = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      role: formValues.role
+      role: formValues.role,
+      color: formValues.color,
+      url: formValues.url,
+      bday: formValues.bday
     };
     postNewUser(newUser);
   };
@@ -43987,6 +44048,7 @@ function App() {
     values: formValues,
     onInputChange: onInputChange,
     onCheckboxChange: onCheckboxChange,
+    onColorChange: onColorChange,
     onSubmit: onSubmit,
     disabled: disabled,
     errors: errors

@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: oldlace;
+    color: black;
+    font-family: 'Bitter', serif;
+    text-align: center;
+  }
+  a {
+    font-size: 0.75em;
+  }
+  header {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h1, h2, h3, h4 {
+    color: darkblue;
+  }
+
+  label {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+
+  input[type=text], select {
+    height: 1.5rem;
+  }
+
+  p{
+    display: inline;
+  }
